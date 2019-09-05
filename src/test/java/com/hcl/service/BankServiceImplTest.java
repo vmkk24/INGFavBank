@@ -54,7 +54,7 @@ public class BankServiceImplTest {
 		bankDetailsDto.setStatusCode(200);
 		
 		Mockito.when(bankRepository.findByBankCode(Mockito.anyInt())).thenReturn(banks);
-		BankDetailsDto bankDetails = bankServiceImpl.bank("ES01234567");
+		BankDetailsDto bankDetails = bankServiceImpl.bank("ES01234567765432");
 		assertEquals(bankDetailsDto.getStatusCode(), bankDetails.getStatusCode());
 	}
 }
