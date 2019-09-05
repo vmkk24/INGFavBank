@@ -12,4 +12,5 @@ public class BankDetailsDto implements Serializable{
 	private static final long serialVersionUID = -5123563162222506239L;
 
 	private String bankName;
+	private Integer statusCode;
 }

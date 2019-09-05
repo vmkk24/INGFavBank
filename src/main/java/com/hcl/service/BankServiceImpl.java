@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.dto.BankDetailsDto;
 import com.hcl.entity.Bank;
-import com.hcl.exception.IngBankException;
 import com.hcl.repository.BankRepository;
-import com.hcl.util.IngConstants;
 
 /**
  * 
@@ -33,23 +31,23 @@ public class BankServiceImpl implements BankService{
 	 */
 	public BankDetailsDto bank(String ibanNumber) {
 		
-		LOGGER.debug("BankServiceImpl bank");
+		LOGGER.debug("BankServiceImpl bank()");
 		BankDetailsDto bankDetailsDto = new BankDetailsDto();
-		String result;
+		Integer bankCode=0;
 		if(ibanNumber.length()>=20) {
-			result = ibanNumber.substring(4,8);
+			bankCode =  Integer.parseInt(ibanNumber.substring(4,8));
 		}
 		else {
-			throw new IngBankException(IngConstants.IBAN_NOT_VALID);
+			bankDetailsDto.setStatusCode(404);
 		}
-		Integer bankCode = Integer.parseInt(result);
 		List<Bank> banks = bankRepository.findByBankCode(bankCode);
 		if(banks.isEmpty()) {
-			throw new IngBankException(IngConstants.BANK_NAME_NOT_FOUND);
+			bankDetailsDto.setStatusCode(404); 
 		}
 		else {
 			Bank bank = banks.get(0);
 			BeanUtils.copyProperties(bank, bankDetailsDto);
+			bankDetailsDto.setStatusCode(200);
 		}
 		return bankDetailsDto;
 	}

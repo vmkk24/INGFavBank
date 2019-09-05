@@ -33,7 +33,7 @@ public class BankController {
 	 */
 	@GetMapping("/bank/{ibanNumber}")
 	public ResponseEntity<BankDetailsDto> bank(@PathVariable("ibanNumber") String ibanNumber){
-		LOGGER.debug("BankController login()");
+		LOGGER.debug("BankController bank()");
 		BankDetailsDto bankDetailsDto = bankService.bank(ibanNumber);
 		return new ResponseEntity<>(bankDetailsDto,HttpStatus.OK);
 	}
