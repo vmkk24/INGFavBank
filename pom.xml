@@ -86,8 +86,8 @@
 
 	<distributionManagement>
   <snapshotRepository>
-    <id>Veer_FavBank</id>
-    <url>http://52.66.244.63:8081/nexus/content/repositories/Veer_FavBank</url>
+    <id>nexus</id>
+    <url>http://13.233.50.211:8081/nexus/content/repositories/Snapshots</url>
   </snapshotRepository>
 </distributionManagement>
 		
